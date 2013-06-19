@@ -1,0 +1,21 @@
+{
+  "name": "medium-templater",
+  "version": "0.0.1",
+  "description": "smarter than your average tiny-templater",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibanishapurr/project3.git"
+  },
+  "keywords": [
+    "templater"
+  ],
+  "author": "jesse keane",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibanishapurr/project3/issues"
+  }
+}
