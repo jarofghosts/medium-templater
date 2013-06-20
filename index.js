@@ -33,7 +33,6 @@ Parser.prototype.lookup = dotpather;
 Parser.prototype.render = function (obj) {
   
   var hasStatement = this.template.substring(this.position).match(regex);
-
   if (!hasStatement) {
     if (!(this.finalParts[0] && this.finalParts[0].length === this.template.length)) {
       this.finalParts.push(this.template.substring(this.position));

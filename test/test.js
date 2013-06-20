@@ -1,11 +1,18 @@
 var language = require('../index.js'),
     for_tag = require('../lib/for_tag.js'),
-    template = '<ul>{% for item in items %}<li>{{ item.name }}</li>{% endfor %}</ul>';
+    if_tag = require('../lib/if_tag.js'),
+    template = '<ul>' +
+               '{% for item in items %}' + 
+               '<li>{% if item.okay %}it\'s okay{% else %}it\'s not okay{% endif %}</li>' +
+               '{% endfor %}' + 
+               '</ul>' + 
+               '{{ message }}';
 
 var compile = language({
-  'for': for_tag
+  'for': for_tag,
+  'if': if_tag
 });
 
 var view = compile(template);
 
-console.log(view({ items: [{ name: 'hey'} , { name: 'there' }, { name: 'you' }] }));
+console.log(view({ items: [{ okay: true } , { okay: false }], message: 'hello world' }));
