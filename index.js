@@ -19,10 +19,8 @@ Parser.prototype.parse = function (obj) {
     if (hasTag) {
       var subParser = language(this.tags),
           tpl = subParser(this.template.substring(this.position, this.position + hasTag.index));
-      this.position = this.position + hasTag.index + hasTag[0].length;
+      this.position += hasTag.index + hasTag[0].length;
       obj[hasTag[1]](tpl);
-      
-      return;
     }
 
 }
@@ -49,12 +47,12 @@ Parser.prototype.render = function (obj, clear) {
       nextTag = nextStatement.split(/\s+/)[0];
 
   if (this.tags[nextTag]) {
-    if (this.position === 0 && this.template.indexOf(hasStatement[0]) > 0) { this.finalParts.push(this.template.substring(0, this.template.indexOf(hasStatement[0]))); }
-    this.position += this.template.indexOf(hasStatement[0]) + hasStatement[0].length;
+    if (this.position === 0 && hasStatement.index > 0) { this.finalParts.push(this.template.substring(0, hasStatement.index)); }
+    this.position += hasStatement.index + hasStatement[0].length;
     var piece = this.tags[nextTag](this, nextStatement);
     this.finalParts.push(piece(obj));
   } else {
-    this.position = this.template.indexOf(nextStatement[0]) + nextStatement[0].length;
+    this.position = nextStatement.index + nextStatement[0].length;
   }
 
   return this.render(obj);
