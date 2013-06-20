@@ -13,24 +13,34 @@ function Parser(tags, template) {
 
 Parser.prototype.parse = function (obj) {
 
-  var position = this.position;
+  var endTags = Object.keys(obj),
+      i = 0,
+      len = endTags.length;
 
-  Object.keys(obj).forEach(function (tag) {
-    var tagRegex = new RegExp('{%\\s*' + tag + '\\s*%}'),
-        hasTag = tagRegex.exec(this.template.substring(position));
+  for (; i < len; ++i) {
+    var tagRegex = new RegExp('{%\\s*' + endTags[i] + '\\s*%}'),
+        hasTag = tagRegex.exec(this.template.substring(this.position));
     if (hasTag) {
       var subParser = language(this.tags),
-          tpl = subParser(this.template.substring(position, position + hasTag.index));
-      if (position + hasTag.index > this.position) { this.position = position + hasTag.index + hasTag[0].length; }
-      obj[tag](tpl);
+          tpl = subParser(this.template.substring(this.position, this.position + hasTag.index));
+      this.position = this.position + hasTag.index + hasTag[0].length;
+      obj[endTags[i]](tpl);
+      
+      return;
     }
-  }.bind(this));
+
+  }
 
 }
 
 Parser.prototype.lookup = dotpather;
 
-Parser.prototype.render = function (obj) {
+Parser.prototype.render = function (obj, clear) {
+
+  if (clear !== undefined) {
+    this.finalParts = [];
+    this.position = 0;
+  }
   
   var hasStatement = this.template.substring(this.position).match(regex);
   if (!hasStatement) {
@@ -65,7 +75,7 @@ function language(tags) {
 
     return function (obj) {
 
-      return parser.render(obj);
+      return parser.render(obj, true);
 
     }
 
