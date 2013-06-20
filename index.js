@@ -40,7 +40,8 @@ Parser.prototype.render = function (obj) {
     var compiled = templater(this.finalParts.join(''));
     //return this.finalParts.join('');
     console.log(obj);
-    return compiled(obj);
+    return 1;
+    //return compiled(obj);
   }
 
   var nextStatement = hasStatement[1],
