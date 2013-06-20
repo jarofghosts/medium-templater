@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "smarter than your average tiny-templater",
   "main": "index.js",
+  "dependencies": {
+    "tiny-templater": "*",
+    "dotpather": "*"
+  },
   "scripts": {
     "test": "node test/test.js"
   },
