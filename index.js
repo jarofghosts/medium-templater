@@ -35,7 +35,9 @@ Parser.prototype.render = function (obj) {
   var hasStatement = this.template.substring(this.position).match(regex);
 
   if (!hasStatement) {
-    this.finalParts.push(this.template.substring(this.position));
+    if (!(this.finalParts[0] && this.finalParts[0].length === this.template.length) {
+      this.finalParts.push(this.template.substring(this.position));
+    }
     var compiled = templater(this.finalParts.join(''));
     return compiled(obj);
   }
