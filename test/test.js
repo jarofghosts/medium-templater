@@ -37,6 +37,9 @@ view = compile('hey');
 // test returns normal string unmodified
 assert.equal(view({}), 'hey');
 
-view = compile('{% for cat in cats %}{%if cat.hasAHat %}{{ cat.name }}{% endif %}{% empty %}no cats{% endfor %}');
-console.log(view({}));
-console.log(view({ cats: [{ name: 'heathcliff', hasAHat: false }, { name: 'top cat', hasAHat: true }, { name: 'garfield' }, { name: 'cat in the hat', hasAHat: true }] }));
+view = compile('{% for cat in cats %}{%if cat.hasAHat %}{{ cat.name }} {% endif %}{% empty %}no cats{% endfor %}');
+// test {% empty %} syntax
+assert.equal(view({}), 'no cats');
+
+// test conditional with undefined and no else body
+assert.equal(view({ cats: [{ name: 'heathcliff', hasAHat: false }, { name: 'top cat', hasAHat: true }, { name: 'garfield' }, { name: 'cat in the hat', hasAHat: true }] }), 'top cat cat in the hat ');
