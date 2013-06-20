@@ -14,22 +14,16 @@ function Parser(tags, template) {
 Parser.prototype.parse = function (obj) {
 
   var endTags = Object.keys(obj),
-      i = 0,
-      len = endTags.length;
-
-  for (; i < len; ++i) {
-    var tagRegex = new RegExp('{%\\s*' + endTags[i] + '\\s*%}'),
-        hasTag = tagRegex.exec(this.template.substring(this.position));
+      tagRegex = new RegExp('{%\\s*(' + endTags.join('|') + ')\\s*%}'),
+      hasTag = tagRegex.exec(this.template.substring(this.position));
     if (hasTag) {
       var subParser = language(this.tags),
           tpl = subParser(this.template.substring(this.position, this.position + hasTag.index));
       this.position = this.position + hasTag.index + hasTag[0].length;
-      obj[endTags[i]](tpl);
+      obj[hasTag[1]](tpl);
       
       return;
     }
-
-  }
 
 }
 
