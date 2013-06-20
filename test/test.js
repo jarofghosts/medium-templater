@@ -43,3 +43,8 @@ assert.equal(view({}), 'no cats');
 
 // test conditional with undefined and no else body
 assert.equal(view({ cats: [{ name: 'heathcliff', hasAHat: false }, { name: 'top cat', hasAHat: true }, { name: 'garfield' }, { name: 'cat in the hat', hasAHat: true }] }), 'top cat cat in the hat ');
+
+view = compile('{% for item in items %}item{% endfor %}{% for cat in cats %}cat{% endfor %}');
+
+// test multiple tags in one template
+assert.equal(view({ cats: [1, 2], items: [1, 2, 3] }), 'itemitemitemcatcat');
