@@ -8,4 +8,4 @@ var compile = language({
 
 var view = compile(template);
 
-console.log(view({items: [{ name: 'hey'} , { name: 'there' }, { name: 'you' }] }));
+console.log(view({ items: [{ name: 'hey'} , { name: 'there' }, { name: 'you' }] }));
