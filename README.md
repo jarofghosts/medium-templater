@@ -7,8 +7,8 @@ It's like a tiny-templater but with a little dash of logic.
 
 ````js
 var language = require('medium-templater')
-  , if_tag = require('./lib/if\_tag.js')
-  , for_tag = require('./lib/for\_tag.js')
+  , if_tag = require('./lib/if_tag.js')
+  , for_tag = require('./lib/for_tag.js')
   , compile
   , template
   , templateString = '<ul>' +
