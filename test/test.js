@@ -48,3 +48,7 @@ view = compile('{% for item in items %}item{% endfor %}{% for cat in cats %}cat{
 
 // test multiple tags in one template
 assert.equal(view({ cats: [1, 2], items: [1, 2, 3] }), 'itemitemitemcatcat');
+
+view = compile('{% durr %}hey');
+// test invalid tags are skipped
+assert.equal(view({}), 'hey');

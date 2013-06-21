@@ -52,7 +52,7 @@ Parser.prototype.render = function (obj, clear) {
     var piece = this.tags[nextTag](this, nextStatement);
     this.finalParts.push(piece(obj));
   } else {
-    this.position = nextStatement.index + nextStatement[0].length;
+    this.position += hasStatement.index + hasStatement[0].length;
   }
 
   return this.render(obj);
