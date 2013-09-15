@@ -1,6 +1,6 @@
 {
   "name": "medium-templater",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "smarter than your average tiny-templater",
   "main": "index.js",
   "dependencies": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ibanishapurr/project3.git"
+    "url": "https://github.com/jarofghosts/medium-templater.git"
   },
   "keywords": [
     "templater"
@@ -20,6 +20,6 @@
   "author": "jesse keane",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ibanishapurr/project3/issues"
+    "url": "https://github.com/jarofghosts/medium-templater/issues"
   }
 }
