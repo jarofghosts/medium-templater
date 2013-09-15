@@ -1,6 +1,8 @@
 medium-templater
 ===
 
+[![Build Status](https://travis-ci.org/jarofghosts/medium-templater.png?branch=master)](https://travis-ci.org/jarofghosts/medium-templater)
+
 It's like a tiny-templater but with a little dash of logic.
 
 ## usage
