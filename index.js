@@ -3,12 +3,12 @@ var templater = require('tiny-templater'),
     regex = /{%\s*([\w\d\s\-\.]*)\s*%}/;
 
 function Parser(tags, template) {
-
   this.tags = tags;
   this.finalParts = [];
   this.position = 0;
   this.template = template;
 
+  return this;
 }
 
 Parser.prototype.parse = function (obj) {
