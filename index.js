@@ -52,7 +52,8 @@ Parser.prototype.render = function Parser$render(obj, clear) {
   has_statement = this.template.slice(this.position).match(regex)
 
   if (!has_statement) {
-    if (!(this.final_parts[0] && this.final_parts[0].length === this.template.length)) {
+    if (!(this.final_parts[0] &&
+          this.final_parts[0].length === this.template.length)) {
       this.final_parts.push(this.template.slice(this.position))
     }
     compiled = templater(this.final_parts.join(''))

@@ -4,8 +4,8 @@
   "description": "smarter than your average tiny-templater",
   "main": "index.js",
   "dependencies": {
-    "tiny-templater": "*",
-    "dotpather": "*"
+    "tiny-templater": "1.0.1",
+    "dotpather": "0.1.3"
   },
   "scripts": {
     "test": "node test/test.js"
@@ -15,7 +15,9 @@
     "url": "https://github.com/jarofghosts/medium-templater.git"
   },
   "keywords": [
-    "templater"
+    "templater",
+    "template",
+    "templates"
   ],
   "author": "jesse keane",
   "license": "MIT",
