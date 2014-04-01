@@ -49,7 +49,7 @@ language({
 })
 ```
 
-#### `./lib/my_tag.js`
+#### `./lib/reverse.js`
 ```js
 module.exports = reverse
 
