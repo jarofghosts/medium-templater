@@ -1,6 +1,6 @@
 {
   "name": "medium-templater",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "smarter than your average tiny-templater",
   "main": "index.js",
   "dependencies": {
