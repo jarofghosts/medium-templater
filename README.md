@@ -9,11 +9,10 @@ It's like a tiny-templater but with a little dash of logic.
 
 ```js
 var language = require('medium-templater')
-  , if_tag = require('./lib/if_tag.js')
-  , for_tag = require('./lib/for_tag.js')
-  , template_string
-  , compile
+
+var template_string
   , template
+  , compile
   
 template_string =
     '<ul>' +
@@ -23,10 +22,7 @@ template_string =
     '</ul>' +
     '{{ message }}'
 
-compile = language({
-    'if': if_tag
-  , 'for': for_tag
-})
+compile = language()
 
 template = compile(template_string)
 
@@ -36,6 +32,49 @@ var result = template({
 })
 
 console.log(result) // <ul><li>okay</li><li>not okay</li></ul>hello world
+```
+
+## extending
+
+Though you get `if` and `for` for free, you can also provide your own tags
+(or override the defaults if you don't like how they work!) like so:
+
+#### `index.js`
+```js
+var language = require('medium-templater')
+  , reverse = require('./lib/reverse')
+
+language({
+    reverse: reverse
+})
+```
+
+#### `./lib/my_tag.js`
+```js
+module.exports = reverse
+
+function reverse(parser, tag_options) {
+  var contents = ''
+
+  parser.parse({'endreverse': end_reverse})
+
+  return function(context) {
+    // context is what is passed to the template, irrelevant in this example.
+    return contents().split('').reverse().join('')
+  }
+
+  function end_reverse(tpl) {
+    contents = tpl
+  }
+}
+```
+
+now you can:
+
+```html
+{% reverse %}
+!sredner etalpmet eht nehw thgir eb lliw txet siht
+{% endreverse %}
 ```
 
 ## further options

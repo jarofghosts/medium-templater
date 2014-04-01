@@ -13,10 +13,7 @@ template = [
   , '{{ message }}'
 ]
 
-var compile = language({
-    'for': for_tag
-  , 'if': if_tag
-})
+var compile = language()
 
 var view = compile(template.join(''))
   , first_obj

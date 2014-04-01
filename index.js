@@ -1,10 +1,19 @@
 var templater = require('tiny-templater')
   , dotpather = require('dotpather')
-  , regex = /{%\s*([\w\d\s\-\.]*)\s*%}/
+
+var for_tag = require('./lib/for_tag')
+  , if_tag = require('./lib/if_tag')
+
+var tag_rex = /{%\s*([\w\d\s\-\.]*)\s*%}/
 
 module.exports = language
 
-function Parser(tags, template) {
+function Parser(_tags, template) {
+  var tags = _tags || {}
+
+  if (!tags.if) tags.if = if_tag
+  if (!tags.for) tags.for = for_tag
+
   this.tags = tags
   this.final_parts = []
   this.position = 0
@@ -49,7 +58,7 @@ Parser.prototype.render = function Parser$render(obj, clear) {
     this.position = 0
   }
   
-  has_statement = this.template.slice(this.position).match(regex)
+  has_statement = this.template.slice(this.position).match(tag_rex)
 
   if (!has_statement) {
     if (!(this.final_parts[0] &&
